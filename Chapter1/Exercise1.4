@@ -1,0 +1,13 @@
+#lang sicp
+(define (a-plus-abs-b a b)
+  ((if (> b 0) + -) a b))
+; if b > 0 then if evaluates to '+' and result will be (+ a b)
+; if b <= 0 then if evaluetes to '-' and result will be (- a b)
+; in practice the procedure is equivalent to 'a + |b|'
+
+(a-plus-abs-b 3 -4)
+; prints 7
+
+(a-plus-abs-b 3 4)
+; prints 7
+
