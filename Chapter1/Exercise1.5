@@ -1,0 +1,17 @@
+#lang sicp
+(define (p) (p))
+(define (test x y)
+  (if (= x 0) 0 y))
+
+(test 0 (p))
+; case applicative-order evaluation
+; interpreter evaluate the arguments and then apply procedure. So procedure will never stops
+; cause (p) procedure is recursive
+; 
+; case normal-order evaluation
+; interpreter fully expand and then reduce. It can be represented as following:
+; (test 0 (p))
+; ((if (= x 0) 0 y) 0 (p))
+; ((if #t 0 (p)))
+; 0
+; So result of procedure will be 0
