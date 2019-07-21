@@ -1,0 +1,4 @@
+Welcome to DrRacket, version 7.3 [3m].
+Language: sicp, with debugging; memory limit: 128 MB.
+. ../../../../../home/mperminov/.racket/7.3/pkgs/sicp/sicp/main.rkt:67:32: ?: cannot bind from tainted syntax in: (quote #%kernel)
+> 

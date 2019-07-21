@@ -1,4 +1,28 @@
-Welcome to DrRacket, version 7.3 [3m].
-Language: sicp, with debugging; memory limit: 128 MB.
-. ../../../../../home/mperminov/.racket/7.3/pkgs/sicp/sicp/main.rkt:67:32: ?: cannot bind from tainted syntax in: (quote #%kernel)
-> 
+#lang sicp
+(define (new-if predicate then-clause else-clause)
+  (cond (predicate then-clause)
+        (else else-clause)))
+(new-if (= 2 3) 0 5)
+(define (square x)
+  (* x x))
+(define (good-enough? guess x)
+  (< (abs (- (square guess) x)) 0.001))
+(define (improve guess x)
+  (average guess (/ x guess)))
+(define (average x y)
+  (/ (+ x y) 2))
+(define (sqrt-iter guess x)
+  (new-if (good-enough? guess x)
+          guess
+          (sqrt-iter (improve guess x) x)))
+(define (sqrt x)
+  (sqrt-iter 1.0 x))
+(sqrt 9)
+; procedure ran out of memory
+; EXPLANATION
+; As LISP interpreter uses applicative-order evaluation
+; in every procedure "first evaluate arguments" - "then apply".
+; in new-if procedure all three arguments will be evaluated and
+; includeing sqrt-iter which then calls another new-if procudure and et cetera.
+; "if" is not procedure (it is special form) and does not evaluate all arguments
+
